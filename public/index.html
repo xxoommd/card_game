@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<link rel="icon" href="images/mstile-70x70.png">
+
+	<title>Signin for ATT</title>
+
+	<!-- Bootstrap core CSS -->
+	<link href="stylesheets/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Custom styles for this template -->
+	<link href="stylesheets/signin.css" rel="stylesheet">
+</head>
+
+<body class="text-center">
+	<form action="#" class="form-signin">
+		<img class="mb-4" src="images/bootstrap-solid.svg" alt="" width="72" height="72">
+		<h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+		<label for="inputUsername" class="sr-only">用户名</label>
+		<input type="text" id="inputUsername" class="form-control" placeholder="用户名" required autofocus>
+		<label for="inputPassword" class="sr-only">密码</label>
+		<input type="password" id="inputPassword" class="form-control" placeholder="密码" required>
+		<button id="submit_button" class="btn btn-lg btn-primary btn-block">登录</button>
+		<p class="mt-5 mb-3 text-muted">&copy; 2018-2019</p>
+	</form>
+
+	<script src="javascripts/jquery-3.3.1.min.js"></script>
+	<script>
+		$(document).ready(function () {
+			
+		})
+
+		$('#submit_button').on('click', () => {
+			const username = $('#inputUsername').val()
+			const password = $('#inputPassword').val()
+			
+			console.log(`- username: ${username}`)
+			console.log(`- password: ${password}`)
+
+			if (username.length === 0 || password.length === 0) {
+				console.log('incomplete input')
+				return
+			}
+
+			$.post('/users/login', {username: username, password: password}, res => {
+				console.log('res:', res)
+				if (res.status === 0) {
+					window.location = "/main.html"
+				}
+			})
+		})
+	</script>
+</body>
+
+</html>
