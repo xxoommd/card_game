@@ -5,7 +5,10 @@ const md5 = require('../md5')
 
 /* GET users listing. */
 router.get('/', function (req, res, next) {
-	res.send('respond with a resource')
+	res.json({
+		status: 0,
+		desc: 'OK'
+	})
 })
 
 const reg_username = /^[a-zA-Z]\w{3,}/
