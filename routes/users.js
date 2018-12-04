@@ -99,7 +99,7 @@ router.post('/login', (req, res) => {
 		console.log('resutl: ', result)
 		if (result.length === 0) {
 			res.json({
-				status: 0,
+				status: 1,
 				desc: 'User not exists'
 			})
 			return

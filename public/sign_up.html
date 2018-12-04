@@ -18,20 +18,22 @@
 </head>
 
 <body class="text-center">
-	<form action="#" class="form-signin">
+	<form class="form-signin">
 		<img class="mb-4" src="images/bootstrap-solid.svg" alt="" width="72" height="72">
-		<h1 class="h3 mb-3 font-weight-normal">Please sign up</h1>
+		<h1 class="h3 mb-3 font-weight-normal">请输入注册信息</h1>
+
 		<label for="inputUsername" class="sr-only">用户名</label>
 		<input type="text" id="inputUsername" class="form-control" placeholder="用户名" required autofocus>
+
 		<label for="inputPassword" class="sr-only">密码</label>
 		<input type="password" id="inputPassword" class="form-control" placeholder="密码" required>
-		<input type="password" id="inputPasswordConfirm" class="form-control" placeholder="密码" required>
-		<!-- <div class="checkbox mb-3">
-			<label>
-				<input type="checkbox" value="remember-me"> Remember me
-			</label>
-		</div> -->
-		<button id="submit_button" class="btn btn-lg btn-primary btn-block" type="submit">注册</button>
+
+		<label for="inputPasswordConfirm" class="sr-only">密码确认</label>
+		<input type="password" id="inputPasswordConfirm" class="form-control" placeholder="密码确认" required>
+
+		<input id="submit_button" value="注册" readonly="readonly" class="btn btn-lg btn-primary btn-block"></input>
+
+		<div class="form-signin"><a href="/">返回登录页面</a></div>
 		<p class="mt-5 mb-3 text-muted">&copy; 2018-2019</p>
 	</form>
 
@@ -41,14 +43,10 @@
 			
 		})
 
-		$('#submit_button').on('click', () => {
-			console.log('--- click ---')
+		function onClickRegister() {
 			const username = $('#inputUsername').val()
 			const password = $('#inputPassword').val()
 			const passwordConf = $('#inputPasswordConfirm').val()
-			console.log(`- username: ${username}`)
-			console.log(`- password: ${password}`)
-			console.log(`- password_confirm: ${passwordConf}`)
 
 			if (username.length === 0 || password.length === 0
 			|| passwordConf.length === 0) {
@@ -58,7 +56,34 @@
 
 			$.post('/users/create', {username: username, password: password}, res => {
 				console.log('res:', res)
-				window.location = "/main.html"
+				if (res.status === 0) {
+					alert('注册成功')
+					window.location = "/main.html"
+				} else {
+					alert(`注册失败：${res.desc}`)
+				}
+			})
+		}
+
+		$('#submit_button').on('click', () => {
+			const username = $('#inputUsername').val()
+			const password = $('#inputPassword').val()
+			const passwordConf = $('#inputPasswordConfirm').val()
+
+			if (username.length === 0 || password.length === 0
+			|| passwordConf.length === 0) {
+				console.log('incomplete input')
+				return
+			}
+
+			$.post('/users/create', {username: username, password: password}, res => {
+				console.log('res:', res)
+				if (res.status === 0) {
+					alert('注册成功')
+					window.location = "/main.html"
+				} else {
+					alert(`注册失败：${res.desc}`)
+				}
 			})
 		})
 	</script>
