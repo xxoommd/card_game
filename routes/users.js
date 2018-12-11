@@ -96,7 +96,6 @@ router.post('/login', (req, res) => {
 			return
 		}
 
-		console.log('resutl: ', result)
 		if (result.length === 0) {
 			res.json({
 				status: 1,
@@ -116,6 +115,11 @@ router.post('/login', (req, res) => {
 			return
 		}
 
+		req.session.user = {
+			username: user.username,
+			cash: user.cash
+		}
+		
 		res.json({
 			status: 0,
 			desc: 'OK'

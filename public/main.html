@@ -56,26 +56,26 @@
 		<div class="col-md-12 column">
 			<div class="row clearfix">
 				<div class="col-md-2 col-md-offset-left-1 column">
-					<img alt="140x140" src="images/cards/card_bg.png" />
+					<img id="card_image_1" alt="140x140" src="images/cards/card_bg.png" />
 				</div>
 				<div class="col-md-2  column">
-					<img alt="140x140" src="images/cards/card_bg.png" />
+					<img id="card_image_2" alt="140x140" src="images/cards/card_bg.png" />
 				</div>
 				<div class="col-md-2 column">
-					<img alt="140x140" src="images/cards/card_bg.png" />
+					<img id="card_image_3" alt="140x140" src="images/cards/card_bg.png" />
 				</div>
 				<div class="col-md-2 column">
-					<img alt="140x140" src="images/cards/card_bg.png" />
+					<img id="card_image_4" alt="140x140" src="images/cards/card_bg.png" />
 				</div>
 				<div class="col-md-2 column">
-					<img alt="140x140" src="images/cards/card_bg.png" />
+					<img id="card_image_5" alt="140x140" src="images/cards/card_bg.png" />
 				</div>
 			</div>
 		
 			</br>
 			<div class="row clearfix">
 				<div class="col-md-6 column col-md-offset-left-3">
-					 <button type="button" class="btn btn-default">换牌</button>
+					 <button id="button_switch" type="button" class="btn btn-default">换牌</button>
 				</div>
 				<div class="col-md-3 column">
 					 <button type="button" class="btn btn-default">下注</button>
@@ -91,4 +91,42 @@
 <script src="javascripts/jquery-3.3.1.min.js"></script>
  
 <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script>
+	$(document).ready(function () {
+		$.get('/main', res => {
+			console.log('res:', res)
+			if (res.status !== 0) {
+				// window.location = "/"
+			}
+		})
+	})
+
+	const card_images = [
+		$('#card_image_1'),
+		$('#card_image_2'),
+		$('#card_image_3'),
+		$('#card_image_4'),
+		$('#card_image_5'),
+	]
+
+	const TYPE_NAME = [
+		'joker',
+		'spade', 
+		'diamond', 
+		'heart', 
+		'club'
+	]
+
+	$('#button_switch').on('click', function () {
+		$.get('/random', res => {
+			console.log(res)
+			for (let i = 0; i < 5; i++) {
+				const card = res.cards[i]
+				const imgURL = `images/cards/${TYPE_NAME[card.type]}_${card.value}.png`
+				console.log(imgURL)
+				card_images[i].attr('src', imgURL)
+			}
+		})
+	})
+</script>
 </html>
