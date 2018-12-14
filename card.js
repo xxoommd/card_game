@@ -5,6 +5,11 @@ const DISPLAY = ['0', 'A', '2', '3', '4', '5',
 '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'R', 'B']
 
 class Card {
+    /**
+     * @param {Number} type [0, 4]
+     * @param {Number} value [1, 15]
+     * @return {Card}
+     */
     constructor(type, value) {
         this.type = type
         this.value = value
@@ -172,7 +177,7 @@ class FiveCards extends Array {
      * @return {Boolean}
      */
 	isStraight() {
-		const counts = this._count()
+        const counts = this._count()
 		if (counts.size !== 5) return false // 有相同的牌不为顺
 
 		let jokerCount = counts.get(14) | 0
@@ -181,10 +186,17 @@ class FiveCards extends Array {
 		counts.delete(15)
 
 		let min = Math.min(...counts.keys())
-		let max = Math.max(...counts.keys())
+        let max = Math.max(...counts.keys())
+        
 		
-		if (max - min <= 4) return true // 最大牌面与最小牌面之差不超过4
-		if (counts.has(1)) max = 14		// 判断大顺，将A的值替换为14
+        if (max - min <= 4) return true // 最大牌面与最小牌面之差不超过4
+        
+		if (counts.has(1)) { // 判断大顺，将A的值替换为14
+            counts.delete(1)
+            counts.set(14, 1)
+            min = Math.min(...counts.keys())
+            max = 14
+        }
 		return max - min <= 4
 	}
 	
