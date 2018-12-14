@@ -1,5 +1,5 @@
 const chai = require('chai')
-const card = require('../card')
+const card = require('../models/card')
 const FiveCards = card.FiveCards
 const Card = card.Card
 

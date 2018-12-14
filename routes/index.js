@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const FiveCards = require('../card').FiveCards
+const FiveCards = require('../models/card').FiveCards
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
