@@ -11,6 +11,7 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
 	<link rel="stylesheet" href="stylesheets/wireframe.css">
 	<link rel="stylesheet" href="stylesheets/offset.css">
+	<link rel="stylesheet" href="stylesheets/select.css">
 </head>
 
 <body class="">
@@ -38,7 +39,7 @@
 	<div class="h-50 d-flex align-items-center bg-info">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-6"><a href="#" class="list-group-item list-group-item-action flex-column align-items-start active">
+				<div class="col-6"><a href="#" class="list-group-item list-group-item-action flex-column align-items-start active">
 						<div class="d-flex w-100 justify-content-between">
 							<h2 class="mb-1">Bonus</h2>
 						</div>
@@ -59,7 +60,7 @@
 							<small id="bonus_4k">111111</small>
 						</div>
 					</a></div>
-				<div class="col-md-6"><a href="#" class="list-group-item flex-column align-items-start list-group-item-action">
+				<div class="col-6"><a href="#" class="list-group-item flex-column align-items-start list-group-item-action">
 						<div class="d-flex w-100 justify-content-between">
 							<h2 class="mb-1">Poker Points</h2>
 						</div>
@@ -109,22 +110,38 @@
 	</div>
 	<div class="py-5 text-center">
 		<div class="container">
-			<div class="row text-muted">
-				<div class="col-md-2 col-4 p-2 col-md-offset-left-1"><i><img id="card_1" alt="140x140" src="images/cards/card_bg.png" /></i></div>
-				<div class="col-md-2 col-4 p-2"> <i><img id="card_2" alt="140x140" src="images/cards/card_bg.png" /></i> </div>
-				<div class="col-md-2 col-4 p-2"> <i><img id="card_3" alt="140x140" src="images/cards/card_bg.png" /></i> </div>
-				<div class="col-md-2 col-4 p-2"> <i><img id="card_4" alt="140x140" src="images/cards/card_bg.png" /></i> </div>
-				<div class="col-md-2 col-4 p-2"> <i><img id="card_5" alt="140x140" src="images/cards/card_bg.png" /></i> </div>
-
-				<div class="col-md-2 col-4 p-2 col-md-offset-left-1">
-					<i class="d-block">
-						<input id="checkbox_1" type="checkbox" name="check">
-					</i>
-				</div>
-				<div class="col-md-2 col-4 p-2"> <i><input id="checkbox_2" type="checkbox" name="check"></i> </div>
-				<div class="col-md-2 col-4 p-2"> <i><input id="checkbox_3" type="checkbox" name="check"></i> </div>
-				<div class="col-md-2 col-4 p-2"> <i><input id="checkbox_4" type="checkbox" name="check"></i> </div>
-				<div class="col-md-2 col-4 p-2"> <i><input id="checkbox_5" type="checkbox" name="check"></i> </div>
+			<div class="row text-muted wrap-selectImg">
+					<div class="col-md-2 col-4 p-2 col-md-offset-left-1 ">
+						<i>
+							<input id="checkbox_1" type="checkbox" name="check">
+							<img class="checkbox" id="card_1" alt="140x140" src="images/cards/card_bg.png" />
+						</i>
+					</div>
+					<div class="col-md-2 col-4 p-2">
+					 <i>
+					 	<input id="checkbox_2" type="checkbox" name="check">
+					 	<img id="card_2" alt="140x140" src="images/cards/card_bg.png" />
+					 </i> 
+					</div>
+					<div class="col-md-2 col-4 p-2"> 
+						<i>
+							<input id="checkbox_3" type="checkbox" name="check">
+							<img id="card_3" alt="140x140" src="images/cards/card_bg.png" />
+						</i> 
+					</div>
+					<div class="col-md-2 col-4 p-2"> 
+						<i>
+							<input id="checkbox_4" type="checkbox" name="check">
+							<img id="card_4" alt="140x140" src="images/cards/card_bg.png" />
+						</i> 
+					</div>
+					<div class="col-md-2 col-4 p-2"> 
+						<i>
+							<input id="checkbox_5" type="checkbox" name="check">
+							<img id="card_5" alt="140x140" src="images/cards/card_bg.png" />
+						</i> 
+					</div>
+	
 			</div>
 			<div class="row">
 				<div class="col-6">
@@ -176,6 +193,32 @@
 		})
 	</script>
 	<script src="javascripts/game.js"></script>
+	<script>   
+         function checkclick(){   
+
+            var checkimg = document.getElementById("checkimg");   
+
+            if($("#agree").is(':checked') ){   
+
+                $("#agree").attr("checked","unchecked");   
+
+                checkimg.src="images/cards/card_bg.png";   
+
+                checkimg.alt="未选";   
+
+            } else{   
+
+                $("#agree").attr("checked","checked");   
+
+                checkimg.src="images/cards/club_1.png";   
+
+                checkimg.alt="选中";   
+
+            }   
+
+        }   
+
+    </script>
 </body>
 
 </html>
